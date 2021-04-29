@@ -4,7 +4,7 @@ import ImageList from "./ImageList";
 import unsplash from "../api/unsplash";
 
 class App extends React.Component {
-  state = { images: [] };
+  state = { images: [], totalImageFound: null };
   //Use Arrow function to bind 'this' to callback function
   //in order to avoid the 'undefined' issue
   onSearchSubmit = async (term) => {
@@ -13,7 +13,10 @@ class App extends React.Component {
       params: { query: term },
     });
 
-    this.setState({ images: res.data.results });
+    this.setState({
+      images: res.data.results,
+      totalImageFound: res.data.total,
+    });
   };
 
   render() {
@@ -21,7 +24,10 @@ class App extends React.Component {
       <div className="ui container" style={{ marginTop: "10px" }}>
         <SearchBar onSubmitSearch={this.onSearchSubmit} />
         <ImageList images={this.state.images} />
-        Found: {this.state.images.length} images
+        <p>
+          Display: {this.state.images.length} images <br />
+          Total Images Found: {this.state.totalImageFound}
+        </p>
       </div>
     );
   }
