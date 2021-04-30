@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     //reference props in class based component as 'this.props'
-    this.props.onSubmitSearch(this.state.term);
+    this.props.onImageSearchSubmit(this.state.term);
   };
 
   render() {
