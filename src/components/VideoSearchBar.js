@@ -9,7 +9,7 @@ class VideoSearchBar extends React.Component {
 
   onFormSubmit = (e) => {
     e.preventDefault();
-    this.props.onVideoFormSubmit(this.state.videoSearchTerm);
+    this.props.onVideoFormSubmit(this.state.videoSearchItem);
   };
 
   render() {

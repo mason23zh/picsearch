@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import ImageList from "./ImageList";
 import VideoSearchBar from "./VideoSearchBar";
+import VideoList from "./VideoList";
 import unsplash from "../api/unsplash";
 import youtube from "../api/youtube";
 
@@ -28,13 +29,18 @@ class App extends React.Component {
   };
 
   //Youtube API call
-  onVideoTermSubmit = async (term) => {
+  onVideoTermSubmit = async (videoTerm) => {
     const res = await youtube.get("/search", {
       params: {
-        q: term,
+        q: videoTerm,
       },
     });
     this.setState({ videoList: res.data.items });
+  };
+
+  onVideoSelect = (video) => {
+    console.log("FROM app", video);
+    this.setState({ selectedVideo: video });
   };
 
   render() {
@@ -51,6 +57,10 @@ class App extends React.Component {
         </div>
         <div className="ui container" style={{ marginTop: "10px" }}>
           <VideoSearchBar onVideoFormSubmit={this.onVideoTermSubmit} />
+          <VideoList
+            videos={this.state.videoList}
+            onVideoSelect={this.onVideoSelect}
+          />
         </div>
       </div>
     );
