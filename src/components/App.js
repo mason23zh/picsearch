@@ -3,6 +3,7 @@ import SearchBar from "./SearchBar";
 import ImageList from "./ImageList";
 import VideoSearchBar from "./VideoSearchBar";
 import VideoList from "./VideoList";
+import VideoDetail from "./VideoDetail";
 import unsplash from "../api/unsplash";
 import youtube from "../api/youtube";
 
@@ -13,6 +14,11 @@ class App extends React.Component {
     videoList: [],
     selectedVideo: null,
   };
+
+  componentDidMount() {
+    //Default video search
+    this.onVideoTermSubmit("F1");
+  }
 
   //Use Arrow function to bind 'this' to callback function
   //in order to avoid the 'undefined' issue
@@ -35,7 +41,10 @@ class App extends React.Component {
         q: videoTerm,
       },
     });
-    this.setState({ videoList: res.data.items });
+    this.setState({
+      videoList: res.data.items,
+      selectedVideo: res.data.items[0], //set default video
+    });
   };
 
   onVideoSelect = (video) => {
@@ -44,7 +53,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state.videoList);
     return (
       <div>
         <div className="ui container" style={{ marginTop: "10px" }}>
@@ -57,10 +65,19 @@ class App extends React.Component {
         </div>
         <div className="ui container" style={{ marginTop: "10px" }}>
           <VideoSearchBar onVideoFormSubmit={this.onVideoTermSubmit} />
-          <VideoList
-            videos={this.state.videoList}
-            onVideoSelect={this.onVideoSelect}
-          />
+          <div className="ui grid">
+            <div className="ui row">
+              <div className="eleven wide column">
+                <VideoDetail video={this.state.selectedVideo} />
+              </div>
+              <div className="five wide column">
+                <VideoList
+                  videos={this.state.videoList}
+                  onVideoSelect={this.onVideoSelect}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
