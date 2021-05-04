@@ -4,6 +4,7 @@ import ImageList from "./ImageList";
 import VideoSearchBar from "./VideoSearchBar";
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
+import WikiSearch from "./WikiSearch";
 import unsplash from "../api/unsplash";
 import youtube from "../api/youtube";
 
@@ -55,14 +56,17 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <WikiSearch />
         <div className="ui container" style={{ marginTop: "10px" }}>
           <SearchBar onImageSearchSubmit={this.onImageSearchSubmit} />
           <ImageList images={this.state.images} />
+
           <p>
             Display: {this.state.images.length} images <br />
             Total Images Found: {this.state.totalImageFound}
           </p>
         </div>
+
         <div className="ui container" style={{ marginTop: "10px" }}>
           <VideoSearchBar onVideoFormSubmit={this.onVideoTermSubmit} />
           <div className="ui grid">
