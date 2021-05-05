@@ -27,7 +27,25 @@ const WikiSearch = () => {
       });
       setResults(data.query.search);
     };
-    if (term) search();
+
+    //run search only if there is a term
+    //setTimeout function will add throttle to make Http request
+    //from wiki. A 550ms delay is added to prevent call api
+    //as soon as a change has been made.
+
+    if (term && !results.length) {
+      search();
+    } else {
+      const timeOutId = setTimeout(() => {
+        if (term) {
+          search();
+        }
+      }, 550);
+
+      return () => {
+        clearTimeout(timeOutId);
+      };
+    }
   }, [term]);
 
   const renderedResults = results.map((result) => {
