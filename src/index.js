@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "semantic-ui-css/semantic.min.css";
-//import App from "./components/App";
-import AppHook from "./components/AppHook";
+import App from "./components/App";
 
-ReactDOM.render(<AppHook />, document.querySelector("#root"));
+ReactDOM.render(<App />, document.querySelector("#root"));
