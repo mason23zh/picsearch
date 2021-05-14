@@ -1,7 +1,8 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 import ImageList from "./ImageList";
-import VideoSearchBar from "./VideoSearchBar";
+//import VideoSearchBar from "./VideoSearchBar";
+import VideoSearchBarHook from "./VideoSearchBarHook";
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
 import WikiSearch from "./WikiSearch";
@@ -68,7 +69,7 @@ class App extends React.Component {
         </div>
 
         <div className="ui container" style={{ marginTop: "10px" }}>
-          <VideoSearchBar onVideoFormSubmit={this.onVideoTermSubmit} />
+          <VideoSearchBarHook onVideoFormSubmit={this.onVideoTermSubmit} />
           <div className="ui grid">
             <div className="ui row">
               <div className="eleven wide column">
