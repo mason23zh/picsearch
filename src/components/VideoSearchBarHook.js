@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const VideoSearchBarHook = ({ onFormSubmit }) => {
+const VideoSearchBarHook = ({ onVideoFormSubmit }) => {
   const [term, setTerm] = useState("");
 
   const onInputChange = (e) => {
@@ -9,7 +9,7 @@ const VideoSearchBarHook = ({ onFormSubmit }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    onFormSubmit(term);
+    onVideoFormSubmit(term);
   };
 
   return (
